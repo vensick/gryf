@@ -1,0 +1,141 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.panel {
+  background: #181818;
+  padding: 24px;
+  border-radius: 12px;
+  width: 420px;
+  border: 1px solid #333;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.row {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+input {
+  background: #101010;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #eee;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 12px;
+  background: #121212;
+  border-radius: 8px;
+  border: 1px solid #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.big {
+  margin-top: 25px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #99ff00;
+}
+
+button {
+  background: #181818;
+  border: 2px solid #333;
+  padding: 16px 28px;
+  font-size: 20px;
+  border-radius: 12px;
+  color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #222;
+  border-color: #99ff00;
+  color: #99ff00;
+  transform: scale(1.05);
+}
+
+/* Nagłówek z przyciskiem po prawej */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small-btn {
+  background: #181818;
+  border: 1px solid #444;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.small-btn:hover {
+  background: #222;
+  border-color: #99ff00;
+  color: #99ff00;
+}
+
+/* Dwa inputy obok siebie */
+.row-2 {
+  display: flex;
+  gap: 12px;
+}
+
+.row-2 > div {
+  flex: 1;
+}
+
+/* Trzy elementy w jednym wierszu */
+.row-3 {
+  display: flex;
+  gap: 12px;
+}
+
+.row-3 > div {
+  flex: 1;
+}
+
+/* Reset */
+.reset-btn {
+  background: #181818;
+  border: 1px solid #444;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.reset-btn:hover {
+  background: #222;
+  border-color: #ff4444;
+  color: #ff4444;
+}
+

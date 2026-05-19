@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>WT Event – Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="panel">
+    <h1>WT EVENT – Ustawienia</h1>
+
+    <div class="row">
+      <label>Data rozpoczęcia eventu</label>
+      <input type="date" id="event-date">
+      <input type="time" id="event-time">
+    </div>
+
+    <div class="row">
+      <label>Liczba etapów (2 dni każdy)</label>
+      <input type="number" id="stages" placeholder="np. 6">
+    </div>
+
+    <div class="row">
+      <label>Punkty potrzebne na ulepszenie</label>
+      <input type="number" id="upgrade-points" placeholder="np. 500000">
+    </div>
+
+    <div class="result" id="output">Uzupełnij dane, aby zobaczyć wyniki.</div>
+
+    <div class="big">
+      Powinieneś mieć teraz:<br>
+      <span id="required-now">0</span> pkt
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
