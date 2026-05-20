@@ -1,4 +1,32 @@
 /* ============================
+    TOGGLE – POKAŻ/UKRYJ USTAWIENIA
+   ============================ */
+
+const storageKey = "wteventInputsCollapsed";
+const toggleBtn = document.getElementById("toggleInputs");
+const inputsGroup = document.getElementById("inputsGroup");
+
+function setInputsCollapsed(collapsed) {
+  if (collapsed) {
+    inputsGroup.classList.add("collapsed");
+    toggleBtn.textContent = "Ustawienia (rozwiń)";
+  } else {
+    inputsGroup.classList.remove("collapsed");
+    toggleBtn.textContent = "Ustawienia (zwiń)";
+  }
+  localStorage.setItem(storageKey, collapsed ? "1" : "0");
+}
+
+toggleBtn.addEventListener("click", () => {
+  const collapsed = !inputsGroup.classList.contains("collapsed");
+  setInputsCollapsed(collapsed);
+});
+
+// Po załadowaniu strony przywróć stan
+const saved = localStorage.getItem(storageKey);
+setInputsCollapsed(saved === "1");
+
+/* ============================
    LOCAL STORAGE – ZAPIS/ODCZYT
    ============================ */
 

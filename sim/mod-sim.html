@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>SIM Rotacja EC</title>
+  <link rel="stylesheet" href="style-sim.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>WARIANT <strong id="variantCode">?</strong></h1>
+    <h2><span id="timeLeft">--</span> <strong>do zmiany</strong></h2>
+    <h2>GMT <span id="gmtTime">--:--:--</span></h2>
+
+    <div class="grid-row">
+      <input class="col-6" type="text" id="brInput" placeholder="wpisz BR">
+      <button class="col-6" onclick="location.href='../index.html'">MENU</button>
+    </div>
+
+    <!-- TABELA W ŚRODKU PANELU -->
+    <div id="tableContainer">
+      <table id="brTable">
+        <thead>
+          <tr><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="script-br.js"></script>
+  <script src="script-sim.js"></script>
+</body>
+</html>

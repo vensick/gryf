@@ -1,0 +1,148 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+  padding: 80px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* GŁÓWNY PANEL */
+.container {
+  width: 480px;
+  background: #181818;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+/* TABELA – DARK STYLE */
+#tableContainer {
+  margin: 24px auto;
+  background: #181818;
+  border: 1px solid #333;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  overflow-x: auto;
+}
+
+#tableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #101010;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+#tableContainer th,
+#tableContainer td {
+  padding: 10px 12px;
+  border: 1px solid #333;
+  text-align: center;
+  white-space: nowrap;
+  color: #ddd;
+}
+
+#tableContainer th {
+  background: #181818;
+  font-weight: 600;
+  color: #aaa;
+}
+
+/* Aktywna kolumna – neonowy akcent */
+#tableContainer th.active,
+#tableContainer td.active {
+  background: #0f1a0f;
+  border-color: #99ff00;
+  color: #99ff00;
+  font-weight: bold;
+}
+
+/* Wąskie kolumny */
+#tableContainer td.rating,
+#tableContainer td.activity {
+  width: 60px;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* NAGŁÓWKI */
+h1 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 24px;
+  color: #eee;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ccc;
+}
+
+h3 {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #aaa;
+}
+
+/* GRID */
+.inputs-group {
+  margin-bottom: 28px;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.col-2  { grid-column: span 2; }
+.col-4  { grid-column: span 4; }
+.col-6  { grid-column: span 6; }
+.col-12 { grid-column: span 12; }
+
+/* INPUTY – dopasowane do projektu */
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background: #101010;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #eee;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+/* BUTTON – neonowy hover */
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #181818;
+  border: 2px solid #333;
+  border-radius: 10px;
+  color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #222;
+  border-color: #99ff00;
+  color: #99ff00;
+  transform: scale(1.05);
+}
