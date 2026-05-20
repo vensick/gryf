@@ -9,10 +9,10 @@ const inputsGroup = document.getElementById("inputsGroup");
 function setInputsCollapsed(collapsed) {
   if (collapsed) {
     inputsGroup.classList.add("collapsed");
-    toggleBtn.textContent = "Ustawienia (rozwiń)";
+    toggleBtn.textContent = "USTAW";
   } else {
     inputsGroup.classList.remove("collapsed");
-    toggleBtn.textContent = "Ustawienia (zwiń)";
+    toggleBtn.textContent = "ZWIŃ";
   }
   localStorage.setItem(storageKey, collapsed ? "1" : "0");
 }

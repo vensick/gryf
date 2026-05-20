@@ -25,12 +25,27 @@ h1 {
   color: #99ff00;
 }
 
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px
+}
+
+@media (min-width: 520px) {
+  .button-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
 button {
   background: #181818;
   border: 2px solid #333;
   padding: 16px 28px;
-  font-size: 20px;
-  border-radius: 12px;
+  font-size: 16px;
+  border-radius: 8px;
   color: #eee;
   cursor: pointer;
   transition: 0.2s;
@@ -40,7 +55,7 @@ button:hover {
   background: #222;
   border-color: #99ff00;
   color: #99ff00;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .container {
