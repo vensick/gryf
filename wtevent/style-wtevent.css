@@ -4,20 +4,21 @@ body {
   color: #eee;
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 24px;
 }
 
 .panel {
   background: #181818;
-  padding: 24px;
+  padding: 16px;
   border-radius: 12px;
-  width: min(100%, 480px);
+  width: min(100%, 360px);
   border: 1px solid #333;
 }
 
 h1 {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .row {
@@ -66,7 +67,7 @@ input {
 }
 
 .result {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 12px;
   background: #121212;
   border-radius: 8px;
@@ -86,7 +87,7 @@ input {
 button {
   background: #181818;
   border: 2px solid #333;
-  padding: 16px 28px;
+  padding: 8px 8px;
   font-size: 20px;
   border-radius: 12px;
   color: #eee;
@@ -98,7 +99,7 @@ button:hover {
   background: #222;
   border-color: #99ff00;
   color: #99ff00;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Nagłówek z przyciskiem po prawej */
