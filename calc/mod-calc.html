@@ -14,22 +14,24 @@
       <div class="col-4"></div>
       <button class=col-4 class="menu-button" onclick="location.href='../index.html'">MENU</button>
    </div>
-    <label>Tryb RB:</label>
+<br>
+    <label>Podstawowe mnożniki RB:</label>
     <div class="type-buttons">
-      <button id="btn-tank" data-mode="1.33">PNCR</button>
-      <button id="btn-air" data-mode="1.40">LOTN</button>
-      <button id="btn-naval" data-mode="2.20">MRSK</button>
+      <button id="btn-tank" data-mode="1.33">Pancerne</button>
+      <button id="btn-air" data-mode="1.40">Lotnicze</button>
+      <button id="btn-naval" data-mode="2.20">Morskie</button>
     </div>
-
-
+<br>
+   <div class="grid-row">
+     <label class="col-6">Mnożnik trybu:</label>
+     <label class="col-6">Mnożnik ery:</label>
+   </div> 
+   <div class="grid-row">    
+     <input class="col-6" type="number" id="mode" value="1" step="0.1">
+     <input class="col-6" type="number" id="era" value="1" step="0.1">
+   </div>
     <label>Punkty w meczu:</label>
     <input type="number" id="battle" value="0">
-
-    <label>Mnożnik trybu:</label>
-    <input type="number" id="mode" value="1" step="0.01">
-
-    <label>Mnożnik ery:</label>
-    <input type="number" id="era" value="1" step="0.1">
 
     <label>Punkty końcowe:</label>
     <input type="number" id="final" value="0">
