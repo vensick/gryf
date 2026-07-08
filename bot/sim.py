@@ -57,7 +57,7 @@ async def update_embed():
     index = (index + 1) % len(LETTERS)
 
 
-@tasks.loop(minutes=5)
+@tasks.loop(minutes=1)
 async def minute_update():
     await update_embed()
 
