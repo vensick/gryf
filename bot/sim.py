@@ -3,7 +3,7 @@ from discord.ext import tasks
 import os
 import datetime
 
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = os.getenv("GRYF_TOKEN")
 CHANNEL_ID = 1455886542240350293
 MESSAGE_ID = None  # bot sam ustawi ID po wysłaniu wiadomości
 
