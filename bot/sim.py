@@ -59,9 +59,21 @@ async def minute_update():
 
 @client.event
 async def on_ready():
+    global MESSAGE_ID
+
     print(f"Zalogowano jako {client.user}")
+
+    channel = await client.fetch_channel(CHANNEL_ID)
+
+    # bot wysyła wiadomość raz
+    msg = await channel.send("Tworzę embed…")
+    MESSAGE_ID = msg.id
+
+    print("ID nowej wiadomości:", MESSAGE_ID)
+
     minute_update.start()
     await update_embed()
+
 
 
 client.run(TOKEN)
