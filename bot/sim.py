@@ -15,7 +15,7 @@ index = 0  # aktualna litera
 
 
 def get_next_minute_unix():
-    """Zwraca UNIX timestamp za 60 sekund"""
+    """Zwraca UNIX timestamp za 5 minut"""
     now = datetime.datetime.now()
     next_minute = now + datetime.timedelta(minutes=1)
     return int(next_minute.timestamp())
@@ -52,7 +52,7 @@ async def update_embed():
     index = (index + 1) % len(LETTERS)
 
 
-@tasks.loop(minutes=1)
+@tasks.loop(minutes=5)
 async def minute_update():
     await update_embed()
 
