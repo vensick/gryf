@@ -5,7 +5,7 @@ import datetime
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = 1455886542240350293
-MESSAGE_ID = 1524434588745863269
+MESSAGE_ID = None  # bot sam ustawi ID po wysłaniu wiadomości
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -15,14 +15,19 @@ index = 0  # aktualna litera
 
 
 def get_next_minute_unix():
-    """Zwraca UNIX timestamp za 5 minut"""
+    """Zwraca UNIX timestamp za 1 minutę"""
     now = datetime.datetime.now()
     next_minute = now + datetime.timedelta(minutes=1)
     return int(next_minute.timestamp())
 
 
 async def update_embed():
-    global index
+    global index, MESSAGE_ID
+
+    # jeśli bot nie ma jeszcze ID wiadomości — nic nie rób
+    if MESSAGE_ID is None:
+        print("Brak MESSAGE_ID — embed nie może być edytowany.")
+        return
 
     # wybierz literę
     letter = LETTERS[index]
@@ -43,7 +48,7 @@ async def update_embed():
         inline=False
     )
 
-    # wyślij aktualizację
+    # edytuj wiadomość bota
     channel = await client.fetch_channel(CHANNEL_ID)
     message = await channel.fetch_message(MESSAGE_ID)
     await message.edit(embed=embed)
@@ -71,9 +76,11 @@ async def on_ready():
 
     print("ID nowej wiadomości:", MESSAGE_ID)
 
+    # start licznika
     minute_update.start()
-    await update_embed()
 
+    # natychmiastowa pierwsza aktualizacja
+    await update_embed()
 
 
 client.run(TOKEN)
