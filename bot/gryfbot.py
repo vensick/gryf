@@ -13,7 +13,7 @@ MODULES = {}
 
 def load_modules():
     modules_path = os.path.join(os.path.dirname(__file__), "modules")
-    package_name = "bot.modules"
+    package_name = "modules"
 
     for loader, module_name, is_pkg in pkgutil.iter_modules([modules_path]):
         full_name = f"{package_name}.{module_name}"
