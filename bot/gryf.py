@@ -16,7 +16,7 @@ async def sim(ctx):
     await ctx.send("Odpalam sim.py...")
 
     import subprocess
-    subprocess.run(["python", "sim.py"])
+    subprocess.run(["python", "bot/sim.py"])
 
 
 bot.run(TOKEN)
