@@ -1,6 +1,8 @@
+import os
 import discord
 from discord.ext import commands
-import os
+import pkgutil
+import importlib
 
 TOKEN = os.getenv("GRYF_TOKEN")
 
@@ -11,12 +13,7 @@ bot = commands.Bot(command_prefix="gryf", intents=intents)
 async def on_ready():
     print(f"Bot zalogowany jako {bot.user}")
 
-@bot.command()
-async def sim(ctx):
-    await ctx.send("Odpalam sim.py...")
-
-    import subprocess
-    subprocess.run(["python", "bot/sim.py"])
-
+for module in pkgutil.iter_modules(['bot/commands']):
+    importlib.import_module(f"bot.commands.{module.name}").setup(bot)
 
 bot.run(TOKEN)
