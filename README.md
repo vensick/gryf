@@ -1,6 +1,5 @@
-Simple project of tools for War Thunder game.
-
-Inspired by polish War Thunder Squadron =GRYF=
+Project of simple tools for War Thunder game.
+Made for =GRYF= War Thunder squadron.
 
 Currently featuring:
 1. War Thunder event organizer
