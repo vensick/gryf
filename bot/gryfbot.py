@@ -6,13 +6,15 @@ import pkgutil
 
 TOKEN = os.getenv("GRYF_TOKEN")
 
+# SECURITY: Authorized server only
+ALLOWED_GUILD = 279297366920527872
+
 intents = discord.Intents.default()
 intents.message_content = True
 intents.messages = True
 intents.guilds = True
 
 bot = commands.Bot(command_prefix="gryf", intents=intents)
-
 
 MODULES = {}
 
@@ -42,9 +44,21 @@ load_modules()
 async def on_ready():
     print(f"[GRYF] Bot logged in as {bot.user}")
 
+@bot.event
+async def on_message(message):
+    if message.guild is None:
+        return
+
+    if message.guild.id != ALLOWED_GUILD:
+        return
+
+    await bot.process_commands(message)
+
 @bot.command()
 async def run(ctx, module_name: str):
-    """Runs a module from the modules/ folder"""
+    if ctx.guild.id != ALLOWED_GUILD:
+        return
+
     if module_name in MODULES:
         await ctx.send(f"Running module: {module_name}")
         result = MODULES[module_name]()
