@@ -7,8 +7,6 @@ import pkgutil
 TOKEN = os.getenv("GRYF_TOKEN")
 
 intents = discord.Intents.default()
-intents.message_content = True
-
 bot = commands.Bot(command_prefix="gryf", intents=intents)
 
 
