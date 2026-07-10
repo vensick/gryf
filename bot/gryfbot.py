@@ -19,11 +19,17 @@ def load_modules():
         full_name = f"{package_name}.{module_name}"
         module = importlib.import_module(full_name)
 
+        if hasattr(module, "setup"):
+            module.setup(bot)
+            print(f"[GRYF] Loaded command module: {module_name}")
+            continue
+
         if hasattr(module, "run"):
             MODULES[module_name] = module.run
-            print(f"[GRYF] Loaded module: {module_name}")
-        else:
-            print(f"[GRYF] Module {module_name} has no run() function")
+            print(f"[GRYF] Loaded executable module: {module_name}")
+            continue
+
+        print(f"[GRYF] Module {module_name} has no setup() or run()")
 
 load_modules()
 
