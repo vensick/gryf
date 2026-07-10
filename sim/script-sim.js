@@ -1,32 +1,47 @@
 
 
+let selectedBr = NaN;
+
 function highlightBRs(threshold) {
   document.querySelectorAll('#brTable td').forEach(td => {
     const val = parseFloat(td.textContent);
-    if (!isNaN(val)) {
+    if (isNaN(threshold) || isNaN(val)) {
+      td.style.backgroundColor = '';
+      td.style.color = '';
+      td.style.fontWeight = '';
+      td.classList.toggle('selected', false);
+      return;
+    }
 
-      // BR mniejsze
-      if (val < threshold) {
-        td.style.backgroundColor = '#2a0f0f';
-        td.style.color = '#ff4444';
-        td.style.fontWeight = 'bold';
+    td.classList.toggle('selected', val === threshold);
 
-      // BR równe
-      } else if (val === threshold) {
-        td.style.backgroundColor = '#066';
-        td.style.color = '#6ff';
-        td.style.fontWeight = 'bold';
+    // BR mniejsze
+    if (val < threshold) {
+      td.style.backgroundColor = '#2a0f0f';
+      td.style.color = '#ff4444';
+      td.style.fontWeight = 'bold';
 
-      // BR większe
-      } else {
-        td.style.backgroundColor = '';
-        td.style.color = '';
-        td.style.fontWeight = '';
-      }
+    // BR równe
+    } else if (val === threshold) {
+      td.style.backgroundColor = '#066';
+      td.style.color = '#6ff';
+      td.style.fontWeight = 'bold';
+
+    // BR większe
+    } else {
+      td.style.backgroundColor = '';
+      td.style.color = '';
+      td.style.fontWeight = '';
     }
   });
+  selectedBr = threshold;
 }
 
+function setClearButtonState() {
+  const btn = document.getElementById('clearInputBtn');
+  const value = document.getElementById('brInput').value.trim();
+  btn.disabled = value === '';
+}
 
 
 document.getElementById('brInput').addEventListener('input', () => {
@@ -34,7 +49,19 @@ document.getElementById('brInput').addEventListener('input', () => {
   const br = parseFloat(input);
   if (!isNaN(br)) {
     highlightBRs(br);
+  } else {
+    highlightBRs(NaN);
   }
+  setClearButtonState();
+});
+
+document.getElementById('clearInputBtn').addEventListener('click', () => {
+  const inputEl = document.getElementById('brInput');
+  inputEl.value = '';
+  highlightBRs(NaN);
+  selectedBr = NaN;
+  setClearButtonState();
+  inputEl.focus();
 });
 
 const variants = ['A','B','C','D'];
@@ -98,6 +125,26 @@ function renderBRTable() {
   rows.forEach(row=>tbody.appendChild(row));
 }
 
+function attachTableCellClicks() {
+  const tbody = document.querySelector('#brTable tbody');
+  tbody.addEventListener('click', event => {
+    const td = event.target.closest('td');
+    if (!td || !tbody.contains(td)) return;
+    const value = parseFloat(td.textContent.trim());
+    if (isNaN(value)) return;
+
+    if (value === selectedBr) {
+      document.getElementById('brInput').value = '';
+      highlightBRs(NaN);
+      selectedBr = NaN;
+    } else {
+      document.getElementById('brInput').value = value;
+      highlightBRs(value);
+    }
+    setClearButtonState();
+  });
+}
+
 function highlightColumn(variant) {
   const index = { A:0,B:1,C:2,D:3 }[variant];
   document.getElementById('variantCode').textContent = variant;
@@ -116,5 +163,6 @@ function updateAll() {
 }
 
 renderBRTable();
+attachTableCellClicks();
 updateAll();
 setInterval(updateAll,1000);
