@@ -1,18 +1,18 @@
 import discord
 from discord.ext import commands
 import re
-from pathlib import Path
+import requests
 
-# repo root = gryf/
-REPO_ROOT = Path(__file__).resolve().parents[1]
-SCRIPT_PATH = REPO_ROOT / "sim" / "script-br.js"
+
+RAW_URL = "https://raw.githubusercontent.com/vensick/gryf/main/sim/script-br.js"
 
 
 def load_variant_codes() -> dict[str, str]:
-    if not SCRIPT_PATH.exists():
-        raise FileNotFoundError(f"Nie znaleziono pliku: {SCRIPT_PATH}")
-
-    text = SCRIPT_PATH.read_text(encoding="utf-8")
+    """Pobiera plik JS z GitHub RAW i wyciąga variantBRcodes."""
+    try:
+        text = requests.get(RAW_URL, timeout=5).text
+    except Exception as e:
+        raise RuntimeError(f"Nie udało się pobrać pliku z GitHub RAW: {e}")
 
     match = re.search(r"const\s+variantBRcodes\s*=\s*\{(?P<body>.*?)\};", text, re.S)
     if not match:
@@ -28,6 +28,7 @@ def load_variant_codes() -> dict[str, str]:
 
 
 def decode_br_codes(code: str) -> list[str]:
+    """Dekoduje ciąg BR np. '105115125' → ['10.5', '11.5', '12.5']"""
     values: list[str] = []
     for i in range(0, len(code), 3):
         chunk = code[i:i + 3]
@@ -37,7 +38,7 @@ def decode_br_codes(code: str) -> list[str]:
 
 def build_embed(variant_codes: dict[str, str]) -> discord.Embed:
     embed = discord.Embed(
-        title="BR",
+        title="Battle Ratings",
         color=discord.Color.from_rgb(88, 142, 255)
     )
 
@@ -58,11 +59,11 @@ def build_embed(variant_codes: dict[str, str]) -> discord.Embed:
 def setup(bot):
     @bot.command(name="sim")
     async def sim_command(ctx):
+        """Wysyła embed BR pobrany z GitHub RAW."""
         try:
             variant_codes = load_variant_codes()
             embed = build_embed(variant_codes)
             await ctx.send(embed=embed)
 
         except Exception as e:
-            await ctx.send(f"Błąd podczas generowania BR: `{e}`")
-
+            await ctx.send(f"❌ Błąd SIM: `{e}`")
