@@ -10,13 +10,17 @@ class RunCommand(commands.Cog):
         self.load_modules()
 
     def load_modules(self):
-        """Ładuje wszystkie moduły z folderu bot/modules/"""
-        modules_path = os.path.join(os.path.dirname(__file__), "modules")
+        """Ładuje moduły z folderu bot/modules/loader/"""
+        base_path = os.path.join(os.path.dirname(__file__), "modules", "loader")
 
-        for file in os.listdir(modules_path):
+        if not os.path.exists(base_path):
+            print("[GRYF] Folder loader/ nie istnieje!")
+            return
+
+        for file in os.listdir(base_path):
             if file.endswith(".py") and not file.startswith("__"):
-                module_name = file[:-3]  # bez .py
-                full_import = f"bot.modules.{module_name}"
+                module_name = file[:-3]  # usuń .py
+                full_import = f"bot.modules.loader.{module_name}"
 
                 try:
                     module = importlib.import_module(full_import)
@@ -24,19 +28,21 @@ class RunCommand(commands.Cog):
                     if hasattr(module, "run"):
                         self.modules[module_name] = module.run
                         print(f"[GRYF] Załadowano moduł: {module_name}")
+                    else:
+                        print(f"[GRYF] Moduł {module_name} nie ma funkcji run()")
 
                 except Exception as e:
                     print(f"[GRYF] Błąd ładowania modułu {module_name}: {e}")
 
     @commands.command(name="gryfrun")
     async def gryfrun(self, ctx, module_name: str = None, *args):
-        """Uruchamia moduł GRYF-a"""
+        """Uruchamia moduł GRYF-a z loader/"""
         if module_name is None:
             await ctx.send("Podaj nazwę modułu, np. `gryfrun bomby 4.3`")
             return
 
         if module_name not in self.modules:
-            await ctx.send(f"Moduł `{module_name}` nie istnieje.")
+            await ctx.send(f"Moduł `{module_name}` nie istnieje w loader/.")
             return
 
         try:
