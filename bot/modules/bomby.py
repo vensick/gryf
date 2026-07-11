@@ -16,7 +16,7 @@ BASE_HP = {
 def build_embed():
     """Buduje embed z pełną tabelą HP baz."""
     embed = discord.Embed(
-        title="Żywotność baz — pełna tabela",
+        title="Żywotność baz",
         color=discord.Color.blue()
     )
 
@@ -36,6 +36,6 @@ async def bomby_command(ctx, args):
 
 async def setup(bot):
     """
-    Rejestracja modułu GRYF-a — identycznie jak w ec.py i sim.py.
+    Rejestracja modułu GRYF-a — identycznie jak w ec.py.
     """
     bot.add_command_module("bomby", bomby_command)
