@@ -36,6 +36,6 @@ async def bomby_command(ctx, args):
 
 async def setup(bot):
     """
-    Rejestracja modułu GRYF-a — identycznie jak w ec.py.
+    Rejestracja modułu GRYF-a — identycznie jak w ec.py i sim.py.
     """
     bot.add_command_module("bomby", bomby_command)
