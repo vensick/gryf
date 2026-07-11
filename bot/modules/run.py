@@ -10,8 +10,8 @@ class RunCommand(commands.Cog):
         self.load_modules()
 
     def load_modules(self):
-        """Ładuje moduły z folderu bot/modules/loader/"""
-        base_path = os.path.join(os.path.dirname(__file__), "modules", "loader")
+        """Ładuje podmoduły z bot/modules/loader/"""
+        base_path = os.path.join(os.path.dirname(__file__), "loader")
 
         if not os.path.exists(base_path):
             print("[GRYF] Folder loader/ nie istnieje!")
@@ -19,7 +19,7 @@ class RunCommand(commands.Cog):
 
         for file in os.listdir(base_path):
             if file.endswith(".py") and not file.startswith("__"):
-                module_name = file[:-3]  # usuń .py
+                module_name = file[:-3]
                 full_import = f"bot.modules.loader.{module_name}"
 
                 try:
@@ -36,7 +36,7 @@ class RunCommand(commands.Cog):
 
     @commands.command(name="gryfrun")
     async def gryfrun(self, ctx, module_name: str = None, *args):
-        """Uruchamia moduł GRYF-a z loader/"""
+        """Uruchamia podmoduł GRYF-a"""
         if module_name is None:
             await ctx.send("Podaj nazwę modułu, np. `gryfrun bomby 4.3`")
             return
