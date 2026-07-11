@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+import re
+import requests
 
 # Stałe HP baz dla BR
 BASE_HP = {
