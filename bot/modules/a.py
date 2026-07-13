@@ -3,7 +3,7 @@ from discord.ext import commands
 from datetime import datetime, timezone, timedelta
 
 # Stałe rotacji dla aktywności
-CYCLE_START = datetime(1970, 1, 1, 0, 0, 0, tzinfo=timezone.utc)
+CYCLE_START = datetime(2026, 7, 13, 0, 0, 0, tzinfo=timezone.utc)
 CYCLE_HOURS = 72
 
 
